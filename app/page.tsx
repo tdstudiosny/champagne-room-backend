@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Dropdown from "./components/Dropdown";
 
 export default function Home() {
   return (
@@ -24,6 +25,68 @@ export default function Home() {
             Save and see your changes instantly.
           </li>
         </ol>
+
+        {/* Dropdown above the message */}
+        <div className="flex justify-center mb-4">
+          <Dropdown position="above" trigger="Dropdown Above">
+            <div className="text-gray-800">
+              <h3 className="font-semibold mb-2">Options Above</h3>
+              <ul className="space-y-1">
+                <li>
+                  <button className="w-full text-left px-2 py-1 hover:bg-gray-100 rounded">
+                    Option 1
+                  </button>
+                </li>
+                <li>
+                  <button className="w-full text-left px-2 py-1 hover:bg-gray-100 rounded">
+                    Option 2
+                  </button>
+                </li>
+                <li>
+                  <button className="w-full text-left px-2 py-1 hover:bg-gray-100 rounded">
+                    Option 3
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </Dropdown>
+        </div>
+
+        {/* Main message */}
+        <div className="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center">
+          <h2 className="text-xl font-semibold mb-2">
+            This is the main message
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400">
+            The dropdown boxes appear above and below this message as requested.
+          </p>
+        </div>
+
+        {/* Dropdown below the message */}
+        <div className="flex justify-center mt-4">
+          <Dropdown position="below" trigger="Dropdown Below">
+            <div className="text-gray-800">
+              <h3 className="font-semibold mb-2">Options Below</h3>
+              <ul className="space-y-1">
+                <li>
+                  <button className="w-full text-left px-2 py-1 hover:bg-gray-100 rounded">
+                    Action A
+                  </button>
+                </li>
+                <li>
+                  <button className="w-full text-left px-2 py-1 hover:bg-gray-100 rounded">
+                    Action B
+                  </button>
+                </li>
+                <li>
+                  <button className="w-full text-left px-2 py-1 hover:bg-gray-100 rounded">
+                    Action C
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </Dropdown>
+        </div>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <a
