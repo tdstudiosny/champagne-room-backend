@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Sidebar from './Sidebar'
-import DashboardOverview from './DashboardOverview'
+import DesktopSidebar from './DesktopSidebar'
+import AIBeastDashboard from './AIBeastDashboard'
 import Projects from './Projects'
 import Files from './Files'
 import AIChat from './AIChat'
@@ -16,8 +16,11 @@ interface DashboardProps {
 export default function Dashboard({ user, onLogout }: DashboardProps) {
   const [activeView, setActiveView] = useState('overview')
   const [dashboardData, setDashboardData] = useState<any>(null)
+  const [isDesktop, setIsDesktop] = useState(false)
 
   useEffect(() => {
+    // Check if running in Electron
+    setIsDesktop(!!(window as any).electronAPI)
     fetchDashboardData()
   }, [])
 
@@ -42,7 +45,7 @@ export default function Dashboard({ user, onLogout }: DashboardProps) {
   const renderContent = () => {
     switch (activeView) {
       case 'overview':
-        return <DashboardOverview data={dashboardData} onRefresh={fetchDashboardData} />
+        return <AIBeastDashboard data={dashboardData} onRefresh={fetchDashboardData} />
       case 'projects':
         return <Projects />
       case 'files':
@@ -52,13 +55,34 @@ export default function Dashboard({ user, onLogout }: DashboardProps) {
       case 'tasks':
         return <Tasks />
       default:
-        return <DashboardOverview data={dashboardData} onRefresh={fetchDashboardData} />
+        return <AIBeastDashboard data={dashboardData} onRefresh={fetchDashboardData} />
+    }
+  }
+
+  const getViewTitle = () => {
+    if (isDesktop) {
+      return 'TD Studios AI Beast - Tyler\'s Empire Manager'
+    }
+    
+    switch (activeView) {
+      case 'overview':
+        return 'Dashboard Overview'
+      case 'projects':
+        return 'Projects'
+      case 'files':
+        return 'File Manager'
+      case 'ai-chat':
+        return 'AI Assistant'
+      case 'tasks':
+        return 'Tasks'
+      default:
+        return 'TD Studios Portal'
     }
   }
 
   return (
     <div className="min-h-screen flex bg-gray-50">
-      <Sidebar
+      <DesktopSidebar
         user={user}
         activeView={activeView}
         onViewChange={setActiveView}
@@ -68,9 +92,15 @@ export default function Dashboard({ user, onLogout }: DashboardProps) {
       <div className="notion-main">
         <div className="notion-header">
           <h1 className="text-xl font-semibold text-gray-900">
-            {getViewTitle(activeView)}
+            {getViewTitle()}
           </h1>
           <div className="ml-auto flex items-center gap-4">
+            {isDesktop && (
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-sm text-green-600 font-medium">AI Beast Active</span>
+              </div>
+            )}
             <span className="text-sm text-gray-500">
               Welcome back, {user.name}
             </span>
@@ -89,21 +119,4 @@ export default function Dashboard({ user, onLogout }: DashboardProps) {
       </div>
     </div>
   )
-}
-
-function getViewTitle(view: string): string {
-  switch (view) {
-    case 'overview':
-      return 'Dashboard Overview'
-    case 'projects':
-      return 'Projects'
-    case 'files':
-      return 'File Manager'
-    case 'ai-chat':
-      return 'AI Assistant'
-    case 'tasks':
-      return 'Tasks'
-    default:
-      return 'TD Studios Portal'
-  }
 } 

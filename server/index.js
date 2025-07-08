@@ -38,7 +38,7 @@ app.use('/api/dashboard', dashboardRoutes);
 
 // Socket.io for real-time AI chat
 io.on('connection', (socket) => {
-  console.log('User connected to AI chat');
+  console.log('🤖 AI Beast user connected');
   
   socket.on('ai-message', async (data) => {
     try {
@@ -51,7 +51,7 @@ io.on('connection', (socket) => {
   });
   
   socket.on('disconnect', () => {
-    console.log('User disconnected from AI chat');
+    console.log('AI Beast user disconnected');
   });
 });
 
@@ -59,7 +59,7 @@ io.on('connection', (socket) => {
 async function processAIMessage(message, context) {
   // This will be replaced with actual Claude AI integration
   return {
-    message: `AI Response to: ${message}`,
+    message: `Tyler's AI Beast responds: ${message}`,
     timestamp: new Date().toISOString(),
     context: context
   };
@@ -67,12 +67,12 @@ async function processAIMessage(message, context) {
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'TD Studios Portal Server Running', timestamp: new Date().toISOString() });
+  res.json({ status: 'TD Studios AI Beast Server Running', timestamp: new Date().toISOString() });
 });
 
 server.listen(PORT, () => {
-  console.log(`🚀 TD Studios Portal Server running on port ${PORT}`);
-  console.log(`🎯 Tyler's Personal Command Center Active`);
+  console.log(`🚀 TD Studios AI Beast Server running on port ${PORT}`);
+  console.log(`🎯 Tyler's AI Empire Command Center Active`);
 });
 
 module.exports = { app, server, io }; 
