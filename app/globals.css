@@ -1,26 +1,245 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* TD Studios Portal - Black & White Theme */
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --foreground: #000000;
+  --muted: #f5f5f5;
+  --muted-foreground: #666666;
+  --border: #e0e0e0;
+  --input: #ffffff;
+  --primary: #000000;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #000000;
+  --accent: #f0f0f0;
+  --accent-foreground: #000000;
+  --destructive: #000000;
+  --destructive-foreground: #ffffff;
+  --ring: #000000;
+  --radius: 0.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;
+    --foreground: #ffffff;
+    --muted: #1a1a1a;
+    --muted-foreground: #999999;
+    --border: #2a2a2a;
+    --input: #1a1a1a;
+    --primary: #ffffff;
+    --primary-foreground: #000000;
+    --secondary: #1a1a1a;
+    --secondary-foreground: #ffffff;
+    --accent: #2a2a2a;
+    --accent-foreground: #ffffff;
+    --destructive: #ffffff;
+    --destructive-foreground: #000000;
+    --ring: #ffffff;
   }
 }
 
+* {
+  border-color: var(--border);
+}
+
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Notion-style Components */
+.notion-block {
+  @apply w-full min-h-[1.5rem] px-2 py-1 rounded-sm transition-all duration-200 hover:bg-gray-50;
+}
+
+.notion-sidebar {
+  @apply w-64 bg-gray-50 border-r border-gray-200 flex flex-col;
+}
+
+.notion-main {
+  @apply flex-1 flex flex-col;
+}
+
+.notion-header {
+  @apply h-12 border-b border-gray-200 flex items-center px-4 bg-white;
+}
+
+.notion-content {
+  @apply flex-1 p-6 bg-white overflow-y-auto;
+}
+
+/* Dashboard Components */
+.dashboard-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.dashboard-card {
+  @apply bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-200;
+}
+
+.project-card {
+  @apply bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-200;
+}
+
+.task-item {
+  @apply flex items-center justify-between p-3 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors duration-200;
+}
+
+.activity-item {
+  @apply flex items-start gap-3 p-3 border-b border-gray-100 last:border-b-0;
+}
+
+/* File Components */
+.file-item {
+  @apply flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200;
+}
+
+.file-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+/* AI Chat Components */
+.chat-container {
+  @apply flex flex-col h-full bg-white;
+}
+
+.chat-messages {
+  @apply flex-1 overflow-y-auto p-4 space-y-4;
+}
+
+.chat-message {
+  @apply flex gap-3 max-w-3xl;
+}
+
+.chat-message.user {
+  @apply flex-row-reverse ml-auto;
+}
+
+.chat-message.ai {
+  @apply flex-row;
+}
+
+.chat-bubble {
+  @apply px-4 py-2 rounded-lg max-w-md;
+}
+
+.chat-bubble.user {
+  @apply bg-black text-white;
+}
+
+.chat-bubble.ai {
+  @apply bg-gray-100 text-black;
+}
+
+.chat-input {
+  @apply border-t border-gray-200 p-4 bg-white;
+}
+
+/* Form Components */
+.form-input {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent;
+}
+
+.form-textarea {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent resize-none;
+}
+
+.btn-primary {
+  @apply px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition-colors duration-200 font-medium;
+}
+
+.btn-secondary {
+  @apply px-4 py-2 bg-gray-100 text-black rounded-md hover:bg-gray-200 transition-colors duration-200 font-medium;
+}
+
+.btn-ghost {
+  @apply px-4 py-2 text-black rounded-md hover:bg-gray-100 transition-colors duration-200 font-medium;
+}
+
+/* Status indicators */
+.status-active {
+  @apply bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.status-pending {
+  @apply bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.status-completed {
+  @apply bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.status-maintenance {
+  @apply bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.status-planning {
+  @apply bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-medium;
+}
+
+/* Priority indicators */
+.priority-high {
+  @apply bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.priority-medium {
+  @apply bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.priority-low {
+  @apply bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Dark mode scrollbar */
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-track {
+    background: #2a2a2a;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #555;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
 }

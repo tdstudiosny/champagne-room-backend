@@ -1,24 +1,47 @@
 {
-  "name": "champagne-room-backend",
+  "name": "td-studios-portal",
   "version": "0.1.0",
   "private": true,
+  "description": "Personal TD Studios Portal - A Notion-style command center for Tyler",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "server": "node server/index.js",
+    "dev:server": "nodemon server/index.js"
   },
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.3.5"
+    "next": "15.3.5",
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2",
+    "multer": "^1.4.5-lts.1",
+    "cors": "^2.8.5",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-markdown": "^9.0.0",
+    "uuid": "^9.0.1",
+    "date-fns": "^2.30.0",
+    "clsx": "^2.0.0"
   },
   "devDependencies": {
     "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/express": "^4.17.17",
+    "@types/multer": "^1.4.7",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/uuid": "^9.0.2",
+    "@types/cors": "^2.8.13",
     "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "nodemon": "^3.0.1"
   }
 }
