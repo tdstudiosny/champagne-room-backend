@@ -1,0 +1,23 @@
+{
+  "url": "https://buildspace.so",
+  "data": {
+    "title": "buildspace",
+    "pricing": [],
+    "features": [],
+    "technologies": [
+      "https://analytics.tiktok.com/i18n/pixel/static/identify_ecbed230.js",
+      "https://analytics.tiktok.com/i18n/pixel/static/main.MTI3MGVjOWI3MA.js",
+      "https://analytics.tiktok.com/i18n/pixel/events.js?sdkid=CCQTAD3C77U2F908G590&lib=ttq",
+      "https://sage.buildspace.so/ingest/static/array.js",
+      "https://www.googletagmanager.com/gtag/js?id=AW-10880806134"
+    ]
+  },
+  "timestamp": "2025-07-09T01:00:04.043Z",
+  "opportunities": [
+    {
+      "type": "features",
+      "description": "Feature analysis complete - gaps identified",
+      "priority": "high"
+    }
+  ]
+}

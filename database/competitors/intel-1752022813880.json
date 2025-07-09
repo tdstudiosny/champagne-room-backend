@@ -1,0 +1,34 @@
+{
+  "url": "https://bubble.io",
+  "data": {
+    "title": "Bubble: The full-stack no-code app builder",
+    "pricing": [],
+    "features": [
+      "One AI-powered platform to build, launch, and grow your business",
+      "Generate. Deploy.\nScale on Bubble.",
+      "Take your ideas all the way to the App Store",
+      "AI app development with a visual editor",
+      "Bring your exact vision to life",
+      "From idea to launch in weeks",
+      "How Bubble works",
+      "Design",
+      "Data",
+      "Logic"
+    ],
+    "technologies": [
+      "https://bat.bing.com/p/insights/s/0.8.13-beta",
+      "https://tr.snapchat.com/config/io/7b2740e3-28a5-4116-bb98-c1ef3ff057ae.js?v=3.47.7-2506252108",
+      "https://j.6sc.co/6si.min.js",
+      "https://bat.bing.com/p/insights/t/56340779",
+      "https://sc-static.net/scevent.min.js"
+    ]
+  },
+  "timestamp": "2025-07-09T01:00:13.880Z",
+  "opportunities": [
+    {
+      "type": "features",
+      "description": "Feature analysis complete - gaps identified",
+      "priority": "high"
+    }
+  ]
+}
