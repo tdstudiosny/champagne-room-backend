@@ -17,8 +17,8 @@ const DASHBOARD_DATA = {
       priority: 'high'
     },
     {
-      id: 'champagne-room',
-      name: 'Champagne Room Backend',
+      id: 'td-studios-ai-beast',
+      name: 'TD Studios AI Beast',
       status: 'maintenance',
       progress: 95,
       lastUpdate: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),

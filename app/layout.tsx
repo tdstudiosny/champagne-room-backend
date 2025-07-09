@@ -5,8 +5,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'TD Studios Portal',
-  description: 'Personal command center for Tyler Davis - TD Studios NY',
+  title: 'TD Studios AI Beast Portal',
+  description: 'Tyler\'s AI Empire Command Center - Autonomous Business Automation & Revenue Generation',
 }
 
 export default function RootLayout({
@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} bg-white text-black antialiased`}>
         <div className="min-h-screen flex flex-col">
-          {children}
+        {children}
         </div>
       </body>
     </html>

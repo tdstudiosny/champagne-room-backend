@@ -71,7 +71,7 @@ export default function Tasks() {
       description: 'Analyze user drop-off points and implement fixes',
       status: 'pending',
       priority: 'high',
-      project: 'Champagne Room Backend',
+      project: 'TD Studios AI Beast',
       assignee: 'Tyler',
       dueDate: '2024-01-25',
       createdAt: '2024-01-19',

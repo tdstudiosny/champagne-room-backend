@@ -1,6 +1,6 @@
 const { app, BrowserWindow, Menu, ipcMain, dialog, shell } = require('electron');
 const path = require('path');
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV !== 'production';
 const { spawn } = require('child_process');
 const Store = require('electron-store');
 const fs = require('fs-extra');
@@ -39,11 +39,11 @@ function createMainWindow() {
     icon: path.join(__dirname, '../assets/icon.png')
   });
 
-  // Load the main dashboard - fix for development mode
+  // Load the main dashboard - dynamic port detection for development
   let startUrl;
   if (isDev) {
-    // Check if port 3000 is available, otherwise use 3001
-    startUrl = 'http://localhost:3001'; // Use 3001 since 3000 is often taken
+    // Try ports in order: 3000, 3001, 3002
+    startUrl = 'http://localhost:3000';
   } else {
     startUrl = `file://${path.join(__dirname, '../out/index.html')}`;
   }
@@ -64,13 +64,20 @@ function createMainWindow() {
     setTimeout(startAutonomousEngine, 5000);
   });
 
-  // Handle load errors
+  // Handle load errors with dynamic port fallback
   windows.main.webContents.on('did-fail-load', (event, errorCode, errorDescription, validatedURL) => {
     console.error(`Failed to load ${validatedURL}: ${errorDescription}`);
-    if (isDev && validatedURL.includes('3001')) {
-      // Try port 3000 if 3001 fails
-      console.log('Trying port 3000...');
-      windows.main.loadURL('http://localhost:3000');
+    if (isDev) {
+      if (validatedURL.includes('3000')) {
+        console.log('Port 3000 failed, trying port 3001...');
+        windows.main.loadURL('http://localhost:3001');
+      } else if (validatedURL.includes('3001')) {
+        console.log('Port 3001 failed, trying port 3002...');
+        windows.main.loadURL('http://localhost:3002');
+      } else if (validatedURL.includes('3002')) {
+        console.log('All ports failed. Please ensure Next.js development server is running.');
+        dialog.showErrorBox('Connection Error', 'Cannot connect to development server.\n\nPlease ensure Next.js is running with:\nnpm run dev');
+      }
     }
   });
 
@@ -100,7 +107,7 @@ function createCloneStudioWindow() {
   });
 
   const cloneUrl = isDev 
-    ? 'http://localhost:3001/clone-studio' 
+    ? 'http://localhost:3000/clone-studio' 
     : `file://${path.join(__dirname, '../out/clone-studio.html')}`;
   
   windows.cloneStudio.loadURL(cloneUrl);
@@ -135,7 +142,7 @@ function createBotArmyWindow() {
   });
 
   const botUrl = isDev 
-    ? 'http://localhost:3001/bot-army' 
+    ? 'http://localhost:3000/bot-army' 
     : `file://${path.join(__dirname, '../out/bot-army.html')}`;
   
   windows.botArmy.loadURL(botUrl);
@@ -170,7 +177,7 @@ function createMarketScannerWindow() {
   });
 
   const scannerUrl = isDev 
-    ? 'http://localhost:3001/market-scanner' 
+    ? 'http://localhost:3000/market-scanner' 
     : `file://${path.join(__dirname, '../out/market-scanner.html')}`;
   
   windows.marketScanner.loadURL(scannerUrl);
@@ -205,7 +212,7 @@ function createAIBrainWindow() {
   });
 
   const aiUrl = isDev 
-    ? 'http://localhost:3001/ai-brain' 
+    ? 'http://localhost:3000/ai-brain' 
     : `file://${path.join(__dirname, '../out/ai-brain.html')}`;
   
   windows.aiBrain.loadURL(aiUrl);
@@ -240,7 +247,7 @@ function createWealthTrackerWindow() {
   });
 
   const wealthUrl = isDev 
-    ? 'http://localhost:3001/wealth-tracker' 
+    ? 'http://localhost:3000/wealth-tracker' 
     : `file://${path.join(__dirname, '../out/wealth-tracker.html')}`;
   
   windows.wealthTracker.loadURL(wealthUrl);
@@ -356,16 +363,34 @@ ipcMain.handle('open-window', (event, windowName) => {
   }
 });
 
+// IPC handler for autonomous stats
+ipcMain.handle('get-autonomous-stats', async (event) => {
+  return {
+    isActive: true,
+    startTime: new Date().toISOString(),
+    tasksCompleted: 0,
+    opportunitiesFound: 0,
+    revenueGenerated: 0,
+    websitesCloned: 0,
+    botsActive: 0,
+    marketScansToday: 0,
+    status: 'Active - Working 24/7 for Tyler',
+    lastUpdate: new Date().toISOString()
+  };
+});
+
 // App event handlers
 app.whenReady().then(() => {
-  // Start backend server first
-  startBackendServer();
+  // Skip backend server in development since it's already running
+  if (!isDev) {
+    startBackendServer();
+  }
   
   // Wait a moment for server to start, then create main window
   setTimeout(() => {
     createMainWindow();
     createMenu();
-  }, 3000); // Increased wait time
+  }, 1000); // Reduced wait time for dev mode
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {

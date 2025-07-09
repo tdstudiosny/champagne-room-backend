@@ -29,7 +29,7 @@ export default function Files() {
   const fetchFiles = async () => {
     try {
       const token = localStorage.getItem('td-portal-token')
-      const response = await fetch('/api/files', {
+      const response = await fetch('/api/files/list', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -184,7 +184,7 @@ export default function Files() {
   const deleteFile = async (fileId: string) => {
     try {
       const token = localStorage.getItem('td-portal-token')
-      const response = await fetch(`/api/files/${fileId}`, {
+      const response = await fetch(`/api/files/delete/${fileId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

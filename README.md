@@ -1,8 +1,8 @@
-# TD Studios Portal
+# TD Studios AI Beast Portal
 
-**Tyler's Personal Command Center**
+**Tyler's Personal AI Empire Command Center**
 
-A Notion-style dashboard built specifically for Tyler Davis (TD Studios NY) to manage projects, files, tasks, and interact with a personal AI assistant.
+A powerful AI-driven dashboard built specifically for Tyler Davis (TD Studios NY) to manage projects, files, tasks, and interact with a personal AI assistant. Features the revolutionary AI Beast system for autonomous business automation.
 
 ## Features
 
@@ -31,8 +31,8 @@ A Notion-style dashboard built specifically for Tyler Davis (TD Studios NY) to m
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/tdstudiosny/td-studios-portal.git
-   cd td-studios-portal
+   git clone https://github.com/tdstudiosny/td-studios-ai-beast-portal.git
+   cd td-studios-ai-beast-portal
    ```
 
 2. **Install dependencies**
@@ -48,8 +48,8 @@ A Notion-style dashboard built specifically for Tyler Davis (TD Studios NY) to m
    ```
    
    **Frontend (Next.js)**
-   ```bash
-   npm run dev
+```bash
+npm run dev
    ```
 
 4. **Access the portal**
@@ -59,7 +59,7 @@ A Notion-style dashboard built specifically for Tyler Davis (TD Studios NY) to m
 ## Project Structure
 
 ```
-td-studios-portal/
+td-studios-ai-beast-portal/
 ├── app/                    # Next.js app directory
 │   ├── components/         # React components
 │   ├── globals.css         # Global styles

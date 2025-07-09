@@ -30,6 +30,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   // System info
   getSystemInfo: () => ipcRenderer.invoke('get-system-info'),
   getAppVersion: () => ipcRenderer.invoke('get-app-version'),
+  getAutonomousStats: () => ipcRenderer.invoke('get-autonomous-stats'),
   
   // Event listeners
   onAutonomousUpdate: (callback) => ipcRenderer.on('autonomous-update', callback),

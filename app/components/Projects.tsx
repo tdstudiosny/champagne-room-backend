@@ -76,7 +76,7 @@ export default function Projects() {
     },
     {
       id: '3',
-      name: 'Champagne Room Backend',
+      name: 'TD Studios AI Beast',
       description: 'Premium subscription management and payment processing',
       status: 'completed',
       priority: 'medium',

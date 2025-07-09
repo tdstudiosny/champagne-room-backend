@@ -30,11 +30,15 @@ const authRoutes = require('./routes/auth');
 const fileRoutes = require('./routes/files');
 const aiRoutes = require('./routes/ai');
 const dashboardRoutes = require('./routes/dashboard');
+const projectRoutes = require('./routes/projects');
+const taskRoutes = require('./routes/tasks');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/files', fileRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/projects', projectRoutes);
+app.use('/api/tasks', taskRoutes);
 
 // Socket.io for real-time AI chat
 io.on('connection', (socket) => {

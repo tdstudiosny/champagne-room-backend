@@ -13,7 +13,7 @@ const TYLER_CONTEXT = {
   techStack: ['Node.js', 'React', 'MongoDB', 'Claude AI', 'Next.js', 'Express.js'],
   projects: [
     'TD Studios Portal',
-    'Champagne Room Backend',
+    'TD Studios AI Beast',
     'Luxury platform development',
     'Adult content site architecture'
   ],
